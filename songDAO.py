@@ -1,7 +1,7 @@
 #TODO 
 # add in here from 7.02 lecture with song details in code to check it works
 # then when further on can look at using it from python anywhere 
-# when including dbconfig code in file, it will take in empty table as in lecture 
+# add in error handling
 
 
 # This songDAO file contains the functions that will be used by the Application to interact with the song Database
@@ -11,6 +11,7 @@ import dbconfig as cfg
 from mysql.connector import cursor
 from mysql.connector.errors import Error
 import sys
+
 
 class songDAO:    # Defining the class for accessing the song data contained in the database &
     connection =""      # initialising the class variables
@@ -41,7 +42,6 @@ class songDAO:    # Defining the class for accessing the song data contained in 
         self.cursor.close()
 
     def createDBtable(self): #creates the table if it does not already exist
-
         try:
             sql = """CREATE TABLE IF NOT EXISTS TaylorSwiftSongs (
                         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -67,6 +67,7 @@ class songDAO:    # Defining the class for accessing the song data contained in 
             returnArray.append(self.convertToDictionary(result))
         self.closeAll()
         return returnArray
+    
     
     def findByID(self, ID):
         try:
@@ -116,8 +117,6 @@ class songDAO:    # Defining the class for accessing the song data contained in 
         self.connection.commit()
         self.closeAll()
         print("Delete Completed")
-
-    
     
     
     def findByGenre(self, Genre):

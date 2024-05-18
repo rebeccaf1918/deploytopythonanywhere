@@ -41,6 +41,7 @@ class songDAO:    # Defining the class for accessing the song data contained in 
         self.cursor.close()
 
     def createDBtable(self): #creates the table if it does not already exist
+
         try:
             sql = """CREATE TABLE IF NOT EXISTS TaylorSwiftSongs (
                         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -134,12 +135,12 @@ class songDAO:    # Defining the class for accessing the song data contained in 
     
     def convertToDictionary(self, resultLine):
         attkeys=['ID', 'Title', 'Album','Genre', 'Charting']
-        broker = {}
+        SONGS = {} #empty dict 
         currentkey = 0
         for attrib in resultLine:
-            broker[attkeys[currentkey]] = attrib
+            SONGS[attkeys[currentkey]] = attrib
             currentkey = currentkey + 1 
-        return broker
+        return SONGS
 
         
 songDAO = songDAO()

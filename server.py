@@ -10,6 +10,11 @@ if __name__ == "__main__":
     app.run(debug=True)
 
 
+@app.route('/rebeccaf1918', methods=['GET']) #Defining route to retieve all Taylor Swift songs from the database
+def getAll():
+    return 'taylor'
+
+
 
 @app.route('/TaylorSwiftSongs', methods=['GET']) #Defining route to retieve all Taylor Swift songs from the database
 def getAll():
@@ -38,7 +43,6 @@ def create():
     addedSong = songDAO.create(song)
     return jsonify(addedSong)
        
-
 
 
 
